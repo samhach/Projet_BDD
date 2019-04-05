@@ -6,7 +6,5 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class Acheteur_View_Controler implements Serializable {
-
-	
 	
 }

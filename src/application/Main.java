@@ -19,14 +19,15 @@ public class Main extends Application {
 	@FXML
 	private Button btn_Vendre;
 	
-	private Stage window;
+	private Stage window =new Stage();
 	private Scene scene;
+	private Parent root;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			window = primaryStage;
 			
-			Parent root =  FXMLLoader.load(getClass().getResource("Accueil_View.fxml"));
+			root =  FXMLLoader.load(getClass().getResource("Accueil_View.fxml"));
 			window.setTitle("Kijiji");	
 			scene = new Scene(root);
 			window.setScene(scene);
@@ -50,14 +51,18 @@ public class Main extends Application {
 	}
 	
 	public void acheter() throws IOException {
-		Stage s = new Stage();
-		Parent root =  FXMLLoader.load(getClass().getResource("../Views/acheteur/Acheteur_View.fxml"));	
-		s.setTitle("Acheteur");
-		s.setScene(new Scene(root));
-		s.show();
+		root =  FXMLLoader.load(getClass().getResource("../Views/acheteur/Acheteur_View.fxml"));
+		scene = new Scene(root);
+		window.setTitle("Acheteur");
+		window.setScene(scene);
+		window.show();
 	}
 	
-	public void vendre() {
-		
+	public void vendre() throws IOException {
+		root =  FXMLLoader.load(getClass().getResource("../Views/vendeur/Vendeur_View.fxml"));	
+		window.setTitle("Vendeur");
+		scene = new Scene(root);
+		window.setScene(scene);
+		window.show();
 	}
 }
