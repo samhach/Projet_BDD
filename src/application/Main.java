@@ -5,10 +5,10 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 	
@@ -28,13 +28,12 @@ public class Main extends Application {
 			window = primaryStage;
 			
 			root =  FXMLLoader.load(getClass().getResource("Accueil_View.fxml"));
-			window.setTitle("Kijiji");	
+			window.setTitle("PROJET IFT2935");	
 			scene = new Scene(root);
 			window.setScene(scene);
 			window.show();
-			
-			
-			
+			ConnctSingleton.getConnexion();
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
