@@ -14,7 +14,7 @@ public class ConnctSingleton {
 	//Il faut juste mettre les coordonnées pour la connexion (nom table, user et mpasse)
 	private static final String url = "jdbc:postgresql://postgres.iro.umontreal.ca::5432/ift2935";
     private static final String user = "user";
-    private static final String password = "passeword";
+    private static final String password = "password";
     private static Connection conn = null;
 	   
 	static{
