@@ -1,7 +1,9 @@
 package application;
 	
 import java.io.IOException;
+import java.util.Vector;
 
+import controler.Vendeur_Controler;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import models.Categorie;
+import models.Etat;
+import models.Produit;
+import models.Vendeur;
+import views.vendeur.Vendeur_View_Controler;
 
 public class Main extends Application {
 	
@@ -32,8 +39,9 @@ public class Main extends Application {
 			scene = new Scene(root);
 			window.setScene(scene);
 			window.show();
-			ConnctSingleton.getConnexion();
-
+			
+			ConnectSingleton.getConnexion();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -58,10 +66,11 @@ public class Main extends Application {
 	}
 	
 	public void vendre() throws IOException {
+		
 		root =  FXMLLoader.load(getClass().getResource("../Views/vendeur/Vendeur_View.fxml"));	
 		window.setTitle("Vendeur");
 		scene = new Scene(root);
 		window.setScene(scene);
-		window.show();
+		window.show();	
 	}
 }
