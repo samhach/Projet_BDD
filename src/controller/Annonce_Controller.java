@@ -22,7 +22,7 @@ Connection conn;
 	public void insert(Annonce a, Produit p) {
 		String query1 = "INSERT INTO PRODUIT (NOM, DESCRIPTION, PRIX, LONGUEUR, "
 				+ "LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT, ID) VALUES (?,?,?,?,?,?,?,?,?,?)";
-		String query2 = "INSERT INTO ANNONCE (ID, PROD_ID, ACHETEUR_NOM, VENDEUR_NOM, TITRE, "
+		String query2 = "INSERT INTO ANNONCE (ID, PROD_ID, ACHETEUR_ID, VENDEUR_ID, TITRE, "
 				+ "DESCRIPTION, PRIX_ESTIME, DATE_PUB, DATE_VENTE) VALUES (?,?,?,?,?,?,?,?,?)";
 
 		try {
@@ -44,8 +44,8 @@ Connection conn;
 			ps = conn.prepareStatement(query2);
 			ps.setInt(1, a.getId());
 			ps.setInt(2, a.getProd_id());
-			ps.setString(3, a.getAcheteur_nom());
-			ps.setString(4, a.getVendeur_nom());
+			ps.setInt(3, a.getId());
+			ps.setInt(4, a.getId());
 			ps.setString(5, a.getTitre());
 			ps.setString(6, a.getDescription());
 			ps.setFloat(7, a.getPrix());

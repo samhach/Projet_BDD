@@ -51,4 +51,33 @@ Connection conn;
 		return data;
 	}
 	
+	public ObservableList getAllAnnonces() {
+		ArrayList<Produit> list = new ArrayList<>();
+		 
+		String query = "SELECT * FROM ANONCE";
+		try {
+			PreparedStatement ps = conn.prepareStatement(query);			
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+				Produit p = new Produit();
+				p.setNom(new SimpleStringProperty(rs.getString("NOM")));
+				p.setDescription(new SimpleStringProperty(rs.getString("description")));
+				p.setPrix(new SimpleFloatProperty(rs.getFloat("prix")));
+				p.setLongueur(new SimpleFloatProperty(rs.getFloat("longueur")));
+				p.setLargeur(new SimpleFloatProperty(rs.getFloat("largeur")));
+				p.setProfondeur(new SimpleFloatProperty(rs.getFloat("profondeur")));
+				p.setCategorie(new SimpleStringProperty(rs.getString("categorie")));
+				p.setEtat(new SimpleStringProperty(rs.getString("etat")));				
+				list.add(p);	
+				System.out.println(rs.getString("NOM"));
+			}
+			ps.close();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		ObservableList data = FXCollections.observableList(list);
+		return data;
+	}
 }

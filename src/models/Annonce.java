@@ -10,19 +10,19 @@ import javafx.beans.property.StringProperty;
 public class Annonce {
 	private IntegerProperty id =         new SimpleIntegerProperty();
 	private IntegerProperty prod_id =    new SimpleIntegerProperty();
-	private StringProperty vendeur_nom =    new SimpleStringProperty();
-	private StringProperty acheteur_nom =    new SimpleStringProperty();
+	private IntegerProperty vendeur_id =    new SimpleIntegerProperty();
+	private IntegerProperty acheteur_id =    new SimpleIntegerProperty();
 	private StringProperty     titre = new SimpleStringProperty();
 	private StringProperty description = new SimpleStringProperty();
 	private FloatProperty prix = new SimpleFloatProperty();
 	private StringProperty date_p = new SimpleStringProperty();
 	private StringProperty date_v = new SimpleStringProperty();
-	public Annonce(IntegerProperty prod_id, StringProperty vendeur_nom, SimpleStringProperty acheteur_nom,
+	public Annonce(IntegerProperty prod_id, SimpleIntegerProperty vendeur_id, SimpleIntegerProperty acheteur_id,
 			StringProperty titre, StringProperty description, FloatProperty prix, StringProperty date_p,
 			StringProperty date_v) {
 		this.prod_id = prod_id;
-		this.vendeur_nom = vendeur_nom;
-		this.acheteur_nom = acheteur_nom;
+		this.vendeur_id = vendeur_id;
+		this.acheteur_id = acheteur_id;
 		this.titre = titre;
 		this.description = description;
 		this.prix = prix;
@@ -39,23 +39,20 @@ public class Annonce {
 		this.prod_id = prod_id;
 	}
 	
-	public String getVendeur_nom() {
-		return vendeur_nom.get();
+	public int getVendeur_id() {
+		return vendeur_id.get();
 	}
-	public void setVendeur_nom(StringProperty vendeur_nom) {
-		this.vendeur_nom = vendeur_nom;
+	public void setVendeur_id(IntegerProperty vendeur_id) {
+		this.vendeur_id = vendeur_id;
 	}
 	public void setId(IntegerProperty id) {
 		this.id = id;
 	}
-	public void setAcheteur_nom(StringProperty acheteur_nom) {
-		this.acheteur_nom = acheteur_nom;
+	public void setAcheteur_nom(IntegerProperty acheteur_id) {
+		this.acheteur_id = acheteur_id;
 	}
-	public String getAcheteur_nom() {
-		return acheteur_nom.get();
-	}
-	public void setAcheteur_id(SimpleStringProperty acheteur_nom) {
-		this.acheteur_nom = acheteur_nom;
+		public void setAcheteur_id(IntegerProperty acheteur_id) {
+		this.acheteur_id = acheteur_id;
 	}
 	public String getTitre() {
 		return titre.get();

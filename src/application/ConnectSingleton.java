@@ -17,7 +17,9 @@ public class ConnectSingleton {
 	
 	//serveur postgres local avec le nom de la base:projet_bdd et user:sam et password :""
 	private static final String url = "jdbc:postgresql://127.0.0.1/projet_bdd";
-	private static final String user ="sam";
+	//private static final String user ="wangyiji_app";//"sam";
+   // private static final String password = "230789aA";
+    private static final String user ="sam";
     private static final String password = "";
     private static Connection conn = null ;
 	   

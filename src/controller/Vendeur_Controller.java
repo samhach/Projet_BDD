@@ -14,11 +14,6 @@ public class Vendeur_Controller {
 	public Vendeur_Controller() {
 		prod_c = new Produit_Controller(ConnectSingleton.getConnexion());
 	}
-
-	
-	public void insertProduit(Produit p) {
-			prod_c.insert(p);
-	}
 	
 	
 	

@@ -121,7 +121,12 @@ public class Vendeur_View_Controller implements Serializable {
 		clearFields();
 		
 	}
-	public void validerAnnonce() {		
+	public void validerAnnonce() {	
+		if(!checkFields()) {
+			Alert a = new Alert(AlertType.ERROR, "CHAMP(S) INVALIDE(s)", ButtonType.OK);
+			a.show();
+			return;
+		}
 		float prix = showExpertDialog();
 		if(prix < 0) return;			
 		tf_prixEstimatif.setText(String.valueOf(prix));
@@ -129,11 +134,7 @@ public class Vendeur_View_Controller implements Serializable {
 	}
 	public void insertProduit() {				
 		try {
-			if(!checkFields()) {
-				Alert a = new Alert(AlertType.ERROR, "CHAMP(S) INVALIDE(s)", ButtonType.OK);
-				a.show();
-				return;
-			}
+			
 			Produit p = new Produit();
 			Annonce a = new Annonce();
 			p.setId(new SimpleIntegerProperty(prod_c.getLastIndex() + 1));
@@ -150,7 +151,7 @@ public class Vendeur_View_Controller implements Serializable {
 			
 			a.setId(new SimpleIntegerProperty(annon_c.getLastIndex() + 1));	
 			a.setProd_id(new SimpleIntegerProperty(p.getId()));
-			a.setVendeur_nom(new SimpleStringProperty(cb_nomVendeur.getValue().toString()));
+			a.setVendeur_id(new SimpleIntegerProperty(Integer.parseInt((cb_nomVendeur.getValue().toString()).split("-")[0])));
 			a.setTitre(new SimpleStringProperty(tf_titreAnnoce.getText()));
 			a.setPrix(new SimpleFloatProperty(Float.parseFloat(tf_prixEstimatif.getText())));
 			a.setDescription(new SimpleStringProperty(ta_description.getText()));
@@ -189,9 +190,9 @@ public class Vendeur_View_Controller implements Serializable {
 	}
 	private boolean checkFields() {
 		if(tf_NomProd.getText().isEmpty() || tf_Description.getText().isEmpty() ||
-			tf_Prix.getText().isEmpty() || cb_Categorie.getValue() == null || 
-			cb_Etat.getValue() == null ||
-			cb_nomVendeur.getValue() == null || tf_prixEstimatif.getText().isEmpty())
+			tf_Prix.getText().isEmpty() || cb_Categorie.getValue().toString() == null || 
+			cb_Etat.getValue().toString() == null ||
+			cb_nomVendeur.getValue().toString() == null)
 			return false;
 		return true;
 	}
@@ -203,7 +204,7 @@ public class Vendeur_View_Controller implements Serializable {
 			ObservableList<Produit> data = req_c.getAllProducts();
 
 			tv_queries.getColumns().addAll(buildTableCol("NOM"),buildTableCol("DESCRIPTION"),buildTableCol("PRIX"), 
-					buildTableCol("LONGUEUR"), buildTableCol("LARGEUR"), buildTableCol("PROFONDEUR"), 
+					buildTableCol("LONGUEUR"), buildTableCol("LARGEUR"), buildTableCol("PROFONDEUR"), buildTableCol("TAILLE"), 
 					buildTableCol("CATEGORIE"), buildTableCol("ETAT"));
 			tv_queries.setItems(data);
 		}
