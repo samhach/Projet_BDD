@@ -18,9 +18,9 @@ public class Produit {
 	private FloatProperty profondeur = new SimpleFloatProperty();
 	private StringProperty marque = new SimpleStringProperty();
 	private StringProperty etat = new SimpleStringProperty();
+	
 	public Produit(StringProperty nom, StringProperty description, FloatProperty prix, FloatProperty longueur, FloatProperty largeur,
 			FloatProperty profondeur, StringProperty marque, StringProperty categorie, StringProperty etat) {
-		super();
 		this.nom = nom;
 		this.description = description;
 		this.categorie = categorie;
@@ -32,7 +32,7 @@ public class Produit {
 		this.etat = etat;
 	}
 	public Produit() {
-		
+
 	}
 	public String getNom() {
 		return nom.get();
@@ -87,6 +87,12 @@ public class Produit {
 	}
 	public void setEtat(StringProperty etat) {
 		this.etat = etat;
+	}
+	public int getId() {
+		return id.get();
+	}
+	public void setId(IntegerProperty id) {
+		this.id = id;
 	}
 	
 	

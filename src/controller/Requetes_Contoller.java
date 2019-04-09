@@ -1,4 +1,4 @@
-package controler;
+package controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +12,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Produit;
 
-public class Requetes_Contoler {
+public class Requetes_Contoller {
 
 Connection conn;
 	
-	public Requetes_Contoler(Connection conn) {
+	public Requetes_Contoller(Connection conn) {
 		this.conn = conn;
 	}
 	

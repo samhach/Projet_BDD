@@ -1,9 +1,6 @@
 package application;
 	
 import java.io.IOException;
-import java.util.Vector;
-
-import controler.Vendeur_Controler;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import models.Categorie;
-import models.Etat;
-import models.Produit;
-import models.Vendeur;
-import views.vendeur.Vendeur_View_Controler;
+
 
 public class Main extends Application {
 	
@@ -46,8 +39,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-	//fx:controller="views.acheteur.Acheteur_View_Controler"
+
 	public static void main(String[] args) {
 		launch(args);
 	}
