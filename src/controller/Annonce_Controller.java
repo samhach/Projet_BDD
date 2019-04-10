@@ -43,7 +43,7 @@ Connection conn;
 			
 			ps = conn.prepareStatement(query2);
 			ps.setInt(1, a.getId());
-			ps.setInt(2, a.getProd_id());
+			ps.setInt(2, getLastIndex());
 			ps.setInt(3, a.getId());
 			ps.setInt(4, a.getId());
 			ps.setString(5, a.getTitre());
@@ -62,7 +62,7 @@ Connection conn;
 	
 	public int getLastIndex() {
 		int index = 0;
-		String query = "SELECT ID FROM ANNONCE ORDER BY ID DESC";
+		String query = "SELECT ID FROM PRODUIT ORDER BY ID DESC";
 		try {
 			PreparedStatement ps = conn.prepareStatement(query);			
 			ps.execute();

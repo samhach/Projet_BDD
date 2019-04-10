@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import javafx.event.ActionEvent; 
 import application.ConnectSingleton;
+import application.Utilitaires;
 import controller.Annonce_Controller;
 import controller.Categorie_Controller;
 import controller.Etat_Controller;
@@ -98,21 +99,21 @@ public class Vendeur_View_Controller implements Serializable {
 	Requetes_Contoller req_c;
 	Intervenant_controller inter_c;
 	public Vendeur_View_Controller() {
-		conn = ConnectSingleton.getConnexion();
-		cat_c = new Categorie_Controller(conn);
-		etat_c = new Etat_Controller(conn);
-		prod_c = new Produit_Controller(conn);		
-		req_c = new Requetes_Contoller(conn);
-		annon_c = new Annonce_Controller(conn);
-		inter_c = new Intervenant_controller(conn);
+		this.conn = ConnectSingleton.getConnexion();
+		this.cat_c = new Categorie_Controller(conn);
+		this.etat_c = new Etat_Controller(conn);
+		this.prod_c = new Produit_Controller(conn);		
+		this.req_c = new Requetes_Contoller(conn);
+		this.annon_c = new Annonce_Controller(conn);
+		this.inter_c = new Intervenant_controller(conn);
 		
 	}
 
 	@FXML
 	private void initialize() {
-		cb_Categorie.setItems(FXCollections.observableArrayList(cat_c.getCategories()));
-		cb_Etat.setItems(FXCollections.observableArrayList(etat_c.getEtat()));
-		cb_nomVendeur.setItems(FXCollections.observableArrayList(inter_c.getAllIntervenant()));
+		cb_Categorie.setItems(FXCollections.observableArrayList(req_c.getCategories()));
+		cb_Etat.setItems(FXCollections.observableArrayList(req_c.getEtat()));
+		cb_nomVendeur.setItems(FXCollections.observableArrayList(req_c.getIntervenantsName()));
 		cb_queries.setItems(FXCollections.observableArrayList(
 				"Liste de tous les produits",
 				"liste des produits vendus",
@@ -137,7 +138,7 @@ public class Vendeur_View_Controller implements Serializable {
 			
 			Produit p = new Produit();
 			Annonce a = new Annonce();
-			p.setId(new SimpleIntegerProperty(prod_c.getLastIndex() + 1));
+			//p.setId(new SimpleIntegerProperty(prod_c.getLastIndex() + 1));
 			p.setNom(new SimpleStringProperty(tf_NomProd.getText()));
 			p.setDescription(new SimpleStringProperty(tf_Description.getText()));
 			float prix =Float.parseFloat(tf_Longueur.getText());
@@ -149,7 +150,7 @@ public class Vendeur_View_Controller implements Serializable {
 			p.setCategorie(new SimpleStringProperty(cb_Categorie.getValue().toString()));
 			p.setEtat(new SimpleStringProperty(cb_Etat.getValue().toString()));
 			
-			a.setId(new SimpleIntegerProperty(annon_c.getLastIndex() + 1));	
+			//a.setId(new SimpleIntegerProperty(annon_c.getLastIndex() + 1));	
 			a.setProd_id(new SimpleIntegerProperty(p.getId()));
 			a.setVendeur_id(new SimpleIntegerProperty(Integer.parseInt((cb_nomVendeur.getValue().toString()).split("-")[0])));
 			a.setTitre(new SimpleStringProperty(tf_titreAnnoce.getText()));
@@ -190,9 +191,9 @@ public class Vendeur_View_Controller implements Serializable {
 	}
 	private boolean checkFields() {
 		if(tf_NomProd.getText().isEmpty() || tf_Description.getText().isEmpty() ||
-			tf_Prix.getText().isEmpty() || cb_Categorie.getValue().toString() == null || 
-			cb_Etat.getValue().toString() == null ||
-			cb_nomVendeur.getValue().toString() == null)
+			tf_Prix.getText().isEmpty() || cb_Categorie.getValue().toString().isEmpty() || 
+			cb_Etat.getValue().toString().isEmpty() ||
+			cb_nomVendeur.getValue().toString().isEmpty())
 			return false;
 		return true;
 	}
@@ -203,21 +204,15 @@ public class Vendeur_View_Controller implements Serializable {
 		{
 			ObservableList<Produit> data = req_c.getAllProducts();
 
-			tv_queries.getColumns().addAll(buildTableCol("NOM"),buildTableCol("DESCRIPTION"),buildTableCol("PRIX"), 
-					buildTableCol("LONGUEUR"), buildTableCol("LARGEUR"), buildTableCol("PROFONDEUR"), buildTableCol("TAILLE"), 
-					buildTableCol("CATEGORIE"), buildTableCol("ETAT"));
+			tv_queries.getColumns().addAll(Utilitaires.buildTableCol("NOM"),Utilitaires.buildTableCol("DESCRIPTION"),Utilitaires.buildTableCol("PRIX"), 
+					Utilitaires.buildTableCol("LONGUEUR"), Utilitaires.buildTableCol("LARGEUR"), Utilitaires.buildTableCol("PROFONDEUR"), Utilitaires.buildTableCol("TAILLE"), 
+					Utilitaires.buildTableCol("CATEGORIE"), Utilitaires.buildTableCol("ETAT"));
 			tv_queries.setItems(data);
 		}
 		
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unused", "unchecked" })
-	private TableColumn buildTableCol(String nom) {
-		
-		TableColumn col = new TableColumn(nom.toUpperCase());
-		col.setCellValueFactory(new PropertyValueFactory(nom.toLowerCase()));
-		return col;
-	}
+	
 	
 	public Float showExpertDialog() {
 		TextInputDialog dialog = new TextInputDialog();
