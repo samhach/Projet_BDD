@@ -121,20 +121,20 @@ public class Acheteur_View_Controller implements Serializable {
 	
 	public Object[] getElementList(String query) {
 		
-//		StringProperty x1 = new SimpleStringProperty(this, "aaa", "aaa");
-//		FloatProperty x2 = new SimpleFloatProperty(12);
-//		IntegerProperty x3 = new SimpleIntegerProperty(5);
-//		
-//		Produit p1 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
-//		Produit p2 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
-//		Produit p3 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
-//		List<Object> allBuyers = new ArrayList<Object>() {{
-//			add(p1);
-//			add(p2);
-//			add(p3);
-//		}};	
-//		Object[] arrayAllBuyers = allBuyers.toArray(new Object[0]);
-//		return arrayAllBuyers;
+		StringProperty x1 = new SimpleStringProperty(this, "aaa", "aaa");
+		FloatProperty x2 = new SimpleFloatProperty(12);
+		IntegerProperty x3 = new SimpleIntegerProperty(5);
+		
+		Produit p1 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
+		Produit p2 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
+		Produit p3 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
+		List<Object> allBuyers = new ArrayList<Object>() {{
+			add(p1);
+			add(p2);
+			add(p3);
+		}};	
+		Object[] arrayAllBuyers = allBuyers.toArray(new Object[0]);
+		return arrayAllBuyers;
 	}
 	
 	public void buyAction() {
