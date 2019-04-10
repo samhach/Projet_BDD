@@ -93,7 +93,7 @@ public class Acheteur_View_Controller implements Serializable {
 	private void initialize() {
 		cb_ChercherCategorie.setItems(FXCollections.observableArrayList(req_c.getCategories()));
 		cb_Acheteur.setItems(FXCollections.observableArrayList(req_c.getIntervenantsName()));
-		req_c.getAllProducts();
+		getListProduits(req_c.getAllProducts());
 	}
 	
 	public void buttonClickAction() {
@@ -164,10 +164,10 @@ public class Acheteur_View_Controller implements Serializable {
 	@SuppressWarnings("unchecked")
 	public void mettreAJourTable() {
 		tv_produit.getColumns().clear();
-		if(rb_cat.isSelected() && !cb_ChercherCategorie.getValue().toString().equals(null))
+		if(rb_cat.isSelected() && !cb_ChercherCategorie.getValue().toString().isEmpty())
 			 getListProduits(req_c.getAllProductsByCat(cb_ChercherCategorie.getValue().toString()));
 
-		if(rb_nom.isSelected() && !tf_charcheNom.getText().equals(null))
+		if(rb_nom.isSelected() && !tf_charcheNom.getText().isEmpty())
 			 getListProduits(req_c.getAllProductsByName(tf_charcheNom.getText().toString()));
 	}
 }
