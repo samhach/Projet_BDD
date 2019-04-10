@@ -10,10 +10,7 @@ import javafx.event.ActionEvent;
 import application.ConnectSingleton;
 import application.Utilitaires;
 import controller.Annonce_Controller;
-import controller.Categorie_Controller;
-import controller.Etat_Controller;
-import controller.Intervenant_controller;
-import controller.Produit_Controller;
+
 import controller.Requetes_Contoller;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -92,20 +89,12 @@ public class Vendeur_View_Controller implements Serializable {
 	
 	private Connection conn;
 	
-	Categorie_Controller cat_c;
-	Etat_Controller etat_c ;
-	Produit_Controller prod_c;
 	Annonce_Controller annon_c;
 	Requetes_Contoller req_c;
-	Intervenant_controller inter_c;
+
 	public Vendeur_View_Controller() {
 		this.conn = ConnectSingleton.getConnexion();
-		this.cat_c = new Categorie_Controller(conn);
-		this.etat_c = new Etat_Controller(conn);
-		this.prod_c = new Produit_Controller(conn);		
-		this.req_c = new Requetes_Contoller(conn);
-		this.annon_c = new Annonce_Controller(conn);
-		this.inter_c = new Intervenant_controller(conn);
+		this.req_c =new Requetes_Contoller(conn);
 		
 	}
 

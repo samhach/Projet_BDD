@@ -1,5 +1,5 @@
 CREATE TABLE CATEGORIE(CATEGORIE CHAR(25) PRIMARY KEY);
-INSERT INTO CATEGORIE  VALUES ('Sport'), ('Habillement'), ('Meuble'), ('Musique'), ('Electro mÃ©nager');	 
+INSERT INTO CATEGORIE  VALUES ('Sport'), ('Habillement'), ('Meuble'), ('Musique'), ('Electro ménager');	 
 CREATE TABLE ETAT (ETAT CHAR(10) PRIMARY KEY);
 INSERT INTO ETAT  VALUES ('Tres bon'), ('Bon'), ('Assez bon');	
 CREATE TABLE PRODUIT
@@ -29,9 +29,9 @@ CREATE TABLE ADRESSE
 	 CODE_POSTAL CHAR(7)	 
 	 );
 	 
-INSERT INTO ADRESSE  VALUES (0,0101, 'Robin des bois', 'MontrÃ©al', 'QuÃ©bec', 'Canada', 'H1H R2R'),
-								(1,2011, 'Belle villes', 'Longueil', 'QuÃ©bec', 'Canada', 'H1H R2R'),
-								(2,0333, 'Des ruelles', 'Laval', 'QuÃ©bec', 'Canada', 'H1H R2R');	
+INSERT INTO ADRESSE  VALUES (0,0101, 'Robin des bois', 'Montréal', 'Québec', 'Canada', 'H1H R2R'),
+								(1,2011, 'Belle villes', 'Longueil', 'Québec', 'Canada', 'H1H R2R'),
+								(2,0333, 'Des ruelles', 'Laval', 'Québec', 'Canada', 'H1H R2R');	
 	 
 	 	 
 CREATE TABLE INTERVENANT

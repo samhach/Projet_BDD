@@ -7,9 +7,7 @@ import java.util.List;
 
 import application.ConnectSingleton;
 import application.Utilitaires;
-import controller.Categorie_Controller;
-import controller.Etat_Controller;
-import controller.Produit_Controller;
+
 import controller.Requetes_Contoller;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
@@ -82,18 +80,12 @@ public class Acheteur_View_Controller implements Serializable {
 	private RadioButton rb_cat;
 	private Connection conn;
 	
-	
-	Categorie_Controller cat_c;
-	Etat_Controller etat_c ;
-	Produit_Controller prod_c;
+
 	Requetes_Contoller req_c;
 	
 	List<Produit> Produits;
 	public Acheteur_View_Controller() {
 		this.conn = ConnectSingleton.getConnexion();
-		this.cat_c = new Categorie_Controller(conn);
-		this.etat_c = new Etat_Controller(conn);
-		this.prod_c = new Produit_Controller(conn);
 		this.req_c = new Requetes_Contoller(conn);
 	}
 	
@@ -129,20 +121,20 @@ public class Acheteur_View_Controller implements Serializable {
 	
 	public Object[] getElementList(String query) {
 		
-		StringProperty x1 = new SimpleStringProperty(this, "aaa", "aaa");
-		FloatProperty x2 = new SimpleFloatProperty(12);
-		IntegerProperty x3 = new SimpleIntegerProperty(5);
-		
-		Produit p1 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
-		Produit p2 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
-		Produit p3 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
-		List<Object> allBuyers = new ArrayList<Object>() {{
-			add(p1);
-			add(p2);
-			add(p3);
-		}};	
-		Object[] arrayAllBuyers = allBuyers.toArray(new Object[0]);
-		return arrayAllBuyers;
+//		StringProperty x1 = new SimpleStringProperty(this, "aaa", "aaa");
+//		FloatProperty x2 = new SimpleFloatProperty(12);
+//		IntegerProperty x3 = new SimpleIntegerProperty(5);
+//		
+//		Produit p1 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
+//		Produit p2 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
+//		Produit p3 = new Produit(x1, x1, x2, x2, x2, x2, x1, x1, x1);
+//		List<Object> allBuyers = new ArrayList<Object>() {{
+//			add(p1);
+//			add(p2);
+//			add(p3);
+//		}};	
+//		Object[] arrayAllBuyers = allBuyers.toArray(new Object[0]);
+//		return arrayAllBuyers;
 	}
 	
 	public void buyAction() {
