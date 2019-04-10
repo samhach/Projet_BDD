@@ -227,7 +227,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </TextField>
-                        <Button fx:id="btn_acheter" mnemonicParsing="false" prefWidth="150.0" text="Acheter" GridPane.rowIndex="11">
+                        <Button fx:id="btn_acheter" mnemonicParsing="false" onAction="#acheterProduit" prefWidth="150.0" text="Acheter" GridPane.rowIndex="11">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" />
                            </GridPane.margin>
@@ -235,7 +235,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Button>
-                        <Button fx:id="btn_annuler" mnemonicParsing="false" prefWidth="150.0" text="Annuler" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                        <Button fx:id="btn_annuler" mnemonicParsing="false" onAction="#closeWindow" prefWidth="150.0" text="Annuler" GridPane.columnIndex="1" GridPane.rowIndex="11">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" />
                            </GridPane.margin>

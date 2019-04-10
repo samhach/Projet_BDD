@@ -285,4 +285,29 @@ Connection conn;
 		ObservableList data = FXCollections.observableList(list);
 		return data;
 	}
+	
+	public void mettreAJourAnnonce(float prix, int acheteur_id, int annonce_id){
+		
+		String query = "UPDATE ANNONCE SET ACHETEUR_ID = "+ acheteur_id +", PRIX_ACHETEUR = " 
+		+ prix + ", CONCLUE = TRUE" + " WHERE ID =" + annonce_id;
+		try {
+			PreparedStatement ps = conn.prepareStatement(query);			
+			ps.execute(); 			
+			ps.close();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void setSearchPath(Connection conn) {
+		String query = "SET SEARCH_PATH TO ESSAI";
+		try {
+			PreparedStatement ps = conn.prepareStatement(query);			
+			ps.execute();		
+			ps.close();						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
 }
