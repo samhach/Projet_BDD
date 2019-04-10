@@ -130,9 +130,66 @@ CREATE OR REPLACE FUNCTION checkName(id INTEGER)
   
 
 	 
+/* Insertions dans les tables */ 
+	 
+INSERT INTO ANNONCE VALUES (01,325, 4545, 4566,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (02,125, 389, 17,'ballon de foot cote-neiges','ballon de foot',8.0,'17-02-2019','02-04-2019',8.0),
+						   (03,56, 6596, 10,'armoire ancienne','garde-robes',105.0,'03-09-2018','12-09-2018',115.0),
+						   (04,78, 7852, 14,'collier de perles bleus','collier',45.0,'25-02-2019','28-02-2019',48.0),
+						   (05,56, 7852, 89,'stick hockey canadiens','baton de hockey',30.0,'14-03-2018','17-03-2018',31.0),
+						   (06,89, 389, 6,'toaster electrique','grille-pain',12.0,'25-02-2019','28-02-2019',12.0),
+						   (07,78, 6596, 36,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (08,89, 4578, 15,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (09,125, 1256, 7,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (10,325, 4863, 17,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (11,56, 7863, 10,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (12,43, 7863, 89,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (13,44, 4863, 14,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (14,23, 389, 6,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (15,56, 6596, 15,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (16,125, 7852, 7,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (17,56, 4545, 17,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (18,89, 6398, 10,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (19,325, 4545, 28,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (20,125, 6398, 30,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (21,12, 1720, 47,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (22,78, 6398, 30,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (23,12, 389, 28,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (24,89, 6596, 105,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (25,325, 1720, 47,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (26,78, 56, 105,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (27,89, 4545, 8989,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (28,111, 56, 56,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (29,63, 1720, 15,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (30,43, 389, 150,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (31,12, 4545, 17,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (32,125, 1720, 7,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (33,325, 4545, 150,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (34,78, 56, 30,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (35,89, 389, 28,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (36,43, 1720, 11,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (37,12, 389, 14,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (38,325, 16, 15,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (39,125, 1720, 17,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (40,12, 6398, 18,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (41,78, 27, 89,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (42,49, 34, 105,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (43,89, 78, 17,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (44,14, 100, 7,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (45,125, 27, 89,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (46,89, 100, 22,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (47,14, 389, 105,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (48,12, 100, 11,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (49,111, 100, 22,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0),
+						   (50,56, 100, 89,'petit aspirateur','aspirateur',72.0,'25-02-2019','20-03-2019',75.0);
+	 
+
+/* LISTE DE REQUÊTES */	
+
+/* selectionner toutes les annonces qui concernent le vendeur numéro 17 et qui ont été publiées en mars 2019 */	 
 	 
 	 
-	 
+SELECT * FROM ANNONCE HAVING VENDEUR_ID = 17 AND WHERE substring( DATE-PUB [ FROM 4]); 
 	 
 	 
 	 
