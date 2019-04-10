@@ -189,7 +189,7 @@ INSERT INTO ANNONCE VALUES (01,325, 4545, 4566,'petit aspirateur','aspirateur',7
 /* selectionner toutes les annonces qui concernent le vendeur numéro 17 et qui ont été publiées en mars 2019 */	 
 	 
 	 
-SELECT * FROM ANNONCE HAVING VENDEUR_ID = 17 AND WHERE substring( DATE_PUB [ FROM 4]); 
+SELECT * FROM ANNONCE HAVING VENDEUR_ID = 17 AND WHERE substring( DATE_PUB [ FROM 4])= '03-2019'; 
 	 
 	 
 	 
