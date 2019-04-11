@@ -7,6 +7,8 @@ import java.util.List;
 import application.ConnectSingleton;
 import application.Utilitaires;
 
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import controller.Requetes_Contoller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +26,13 @@ import models.Categorie;
 import models.Displayed_Annonce;
 import models.Produit;
 
+
+class TabViewHandler implements EventHandler<MouseEvent> {
+    @Override
+    public void handle(MouseEvent event) {
+        //this method will be overrided in next step
+    }
+ }
 
 public class Acheteur_View_Controller implements Serializable {
 	@FXML
@@ -75,6 +84,8 @@ public class Acheteur_View_Controller implements Serializable {
 	private Connection conn;
 	
 
+	private Object selectedItem;
+	
 	Requetes_Contoller req_c;
 	
 	List<Produit> Produits;
@@ -119,14 +130,35 @@ public class Acheteur_View_Controller implements Serializable {
 	@SuppressWarnings("unchecked")
 	public void mettreAJourTable() {
 		tv_annonces.getColumns().clear();
-		if(rb_cat.isSelected() && !cb_ChercherCategorie.getValue().toString().isEmpty())
+		/*if(rb_cat.isSelected() && !cb_ChercherCategorie.getValue().toString().isEmpty())
 			getListAnnonces(req_c.getAllProductsByCat(cb_ChercherCategorie.getValue().toString()));
 
 		if(rb_nom.isSelected() && !tf_charcheNom.getText().isEmpty())
-			getListAnnonces(req_c.getAllProductsByName(tf_charcheNom.getText().toString()));
+			getListAnnonces(req_c.getAllProductsByName(tf_charcheNom.getText().toString()));*/
 		
 		//if(rb_final.isSelected() && !tf_charcheNom.getText().isEmpty())
 			//getListAnnonces(req_c.getAllProductsByName(tf_charcheNom.getText().toString()));
+		
+		if(rb_cat.isSelected() && !cb_ChercherCategorie.getValue().toString().isEmpty())
+			 getListProduits(req_c.getAllAnnoncesByCat(cb_ChercherCategorie.getValue().toString()));
+
+		if(rb_nom.isSelected() && !tf_charcheNom.getText().isEmpty())
+			 getListProduits(req_c.getAllAnnoncesByName(tf_charcheNom.getText().toString()));
+		
+		tv_produit.setOnMouseClicked(new TabViewHandler() {
+			@Override
+			public void handle(MouseEvent event) {
+				selectedItem = tv_produit.getSelectionModel().getSelectedItem();
+				Produit p = req_c.getProductById(((Annonce)selectedItem).getProd_id());
+				tf_Nom.setText(p.getNom()); 
+				ta_Desc.setText(p.getDescription()); 
+				tf_Categorie.setText(p.getCategorie()); 
+				tf_Prix.setText(p.getPrix()+""); 
+				tf_Dimension.setText(p.getLongueur()+", "+p.getLargeur()+", "+p.getProfondeur()); 
+				tf_Marque.setText(p.getMarque()); 
+				tf_Etat.setText(p.getEtat());				
+			}
+		});
 	}
 	
 	public void closeWindow() {
