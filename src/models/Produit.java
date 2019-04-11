@@ -13,6 +13,7 @@ public class Produit {
 	private StringProperty description = new SimpleStringProperty();
 	private StringProperty categorie = new SimpleStringProperty();
 	private FloatProperty prix = new SimpleFloatProperty();
+	private FloatProperty taille = new SimpleFloatProperty();
 	private FloatProperty longueur = new SimpleFloatProperty();
 	private FloatProperty largeur = new SimpleFloatProperty();
 	private FloatProperty profondeur = new SimpleFloatProperty();
@@ -93,6 +94,12 @@ public class Produit {
 	}
 	public void setId(IntegerProperty id) {
 		this.id = id;
+	}
+	public float getTaille() {
+		return taille.get();
+	}
+	public void setTaille(FloatProperty taille) {
+		this.taille = taille;
 	}
 	
 	

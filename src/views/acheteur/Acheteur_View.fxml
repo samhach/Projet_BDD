@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.acheteur.Acheteur_View_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.acheteur.Acheteur_View_Controller">
    <children>
       <GridPane layoutX="11.0" layoutY="32.0" prefHeight="536.0" prefWidth="715.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -30,8 +30,9 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="163.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="163.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="439.0" minHeight="10.0" prefHeight="427.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="163.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="163.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="457.0" minHeight="10.0" prefHeight="457.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <RadioButton fx:id="rb_cat" mnemonicParsing="false" text="Recherche par categorie" GridPane.rowIndex="1">
@@ -61,7 +62,7 @@
                   <InnerShadow blurType="ONE_PASS_BOX" />
                </effect>
             </Button>
-            <ComboBox fx:id="cb_ChercherCategorie" prefHeight="25.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ComboBox fx:id="cb_ChercherCategorie" prefHeight="25.0" prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
@@ -77,7 +78,7 @@
                   <InnerShadow blurType="ONE_PASS_BOX" />
                </effect>
             </RadioButton>
-            <TitledPane animated="false" collapsible="false" prefHeight="445.0" prefWidth="274.0" text="Detail Produit" textFill="#1d179e" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
+            <TitledPane animated="false" collapsible="false" prefHeight="559.0" prefWidth="289.0" text="Detail Produit" textFill="#1d179e" GridPane.columnIndex="3" GridPane.rowSpan="4">
                <content>
                   <GridPane prefHeight="430.0" prefWidth="287.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                     <columnConstraints>
@@ -85,21 +86,23 @@
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
+                        <RowConstraints maxHeight="33.0" minHeight="22.0" prefHeight="24.0" />
+                        <RowConstraints maxHeight="50.0" minHeight="19.0" prefHeight="28.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="50.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="50.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="50.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="20.0" minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="50.0" minHeight="20.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="74.0" minHeight="20.0" prefHeight="74.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="20.0" minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="20.0" minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="20.0" minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="20.0" minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="20.0" minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="20.0" minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="50.0" minHeight="20.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="57.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="35.0" minHeight="3.0" prefHeight="35.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="tf_Nom" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="tf_Nom" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -107,7 +110,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </TextField>
-                        <TextArea fx:id="ta_Desc" editable="false" prefHeight="37.0" prefWidth="199.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                        <TextArea fx:id="ta_Desc" editable="false" prefHeight="37.0" prefWidth="199.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -115,7 +118,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </TextArea>
-                        <TextField fx:id="tf_Categorie" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextField fx:id="tf_Categorie" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -123,7 +126,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </TextField>
-                        <TextField fx:id="tf_Prix" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <TextField fx:id="tf_Prix" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -131,7 +134,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </TextField>
-                        <TextField fx:id="tf_Dimension" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <TextField fx:id="tf_Dimension" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -139,7 +142,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </TextField>
-                        <TextField fx:id="tf_Marque" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <TextField fx:id="tf_Marque" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -147,7 +150,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </TextField>
-                        <TextField fx:id="tf_Etat" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                        <TextField fx:id="tf_Etat" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -155,7 +158,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </TextField>
-                        <Label text="Categorie" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                        <Label text="Categorie" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -163,7 +166,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Label>
-                        <Label text="Prix" GridPane.rowIndex="5">
+                        <Label text="Prix" GridPane.rowIndex="7">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -171,7 +174,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Label>
-                        <Label text="Dim (long, larg, prof)" GridPane.rowIndex="6">
+                        <Label text="Dim (long, larg, prof)" GridPane.rowIndex="8">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -179,7 +182,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Label>
-                        <Label text="Marque" GridPane.rowIndex="7">
+                        <Label text="Marque" GridPane.rowIndex="9">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -187,7 +190,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Label>
-                        <Label text="Etat" GridPane.rowIndex="8">
+                        <Label text="Etat" GridPane.rowIndex="10">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -195,7 +198,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Label>
-                        <Label text="Nom produit" GridPane.rowIndex="1">
+                        <Label text="Nom produit" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -203,7 +206,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Label>
-                        <Label text="Description" GridPane.rowIndex="2">
+                        <Label text="Description" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -211,7 +214,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Label>
-                        <Label text="Offrire un prix" GridPane.rowIndex="9">
+                        <Label text="Offrire un prix" GridPane.rowIndex="11">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -219,7 +222,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Label>
-                        <TextField fx:id="tf_prixAcheteur" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                        <TextField fx:id="tf_prixAcheteur" GridPane.columnIndex="1" GridPane.rowIndex="11">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -227,7 +230,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </TextField>
-                        <Button fx:id="btn_acheter" mnemonicParsing="false" onAction="#acheterProduit" prefWidth="150.0" text="Acheter" GridPane.rowIndex="11">
+                        <Button fx:id="btn_acheter" mnemonicParsing="false" onAction="#acheterProduit" prefWidth="150.0" text="Acheter" GridPane.rowIndex="13">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" />
                            </GridPane.margin>
@@ -235,7 +238,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Button>
-                        <Button fx:id="btn_annuler" mnemonicParsing="false" onAction="#closeWindow" prefWidth="150.0" text="Annuler" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                        <Button fx:id="btn_annuler" mnemonicParsing="false" onAction="#closeWindow" prefWidth="150.0" text="Annuler" GridPane.columnIndex="1" GridPane.rowIndex="13">
                            <GridPane.margin>
                               <Insets left="5.0" right="5.0" />
                            </GridPane.margin>
@@ -243,7 +246,7 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </Button>
-                        <ComboBox fx:id="cb_Acheteur" prefWidth="150.0" GridPane.columnIndex="1">
+                        <ComboBox fx:id="cb_Acheteur" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
@@ -251,13 +254,35 @@
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
                         </ComboBox>
-                        <Label text="Acheteur">
+                        <Label text="Acheteur" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin>
                            <effect>
                               <InnerShadow blurType="ONE_PASS_BOX" />
                            </effect>
+                        </Label>
+                        <Label fx:id="lb_adresse" GridPane.columnSpan="2">
+                           <effect>
+                              <InnerShadow blurType="ONE_PASS_BOX" color="#1633b2" />
+                           </effect>
+                           <GridPane.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lb_tel" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <effect>
+                              <InnerShadow blurType="ONE_PASS_BOX" color="#1633b2" />
+                           </effect>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </GridPane.margin>
                         </Label>
                      </children>
                      <GridPane.margin>
@@ -269,11 +294,19 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </TitledPane>
-            <TableView fx:id="tv_produit" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+            <TableView fx:id="tv_annonces" prefHeight="387.0" prefWidth="585.0" GridPane.columnSpan="3" GridPane.rowIndex="3">
                <effect>
                   <InnerShadow blurType="ONE_PASS_BOX" />
                </effect>
             </TableView>
+            <RadioButton fx:id="rb_final" mnemonicParsing="false" text="Recherche produits non vendus" toggleGroup="$recherche" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </RadioButton>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />

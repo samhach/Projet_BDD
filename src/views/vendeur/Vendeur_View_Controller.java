@@ -83,7 +83,7 @@ public class Vendeur_View_Controller implements Serializable {
 	@FXML 
 	private TextField tf_prixEstimatif;
 	@FXML 
-	private TextField tf_Taille;
+	private TextField tf_taille;
 	@FXML
 	private TextArea ta_description;
 	
@@ -127,7 +127,7 @@ public class Vendeur_View_Controller implements Serializable {
 			
 			Produit p = new Produit();
 			Annonce a = new Annonce();
-			//p.setId(new SimpleIntegerProperty(prod_c.getLastIndex() + 1));
+			p.setTaille(new SimpleFloatProperty(Float.parseFloat(tf_taille.getText())));
 			p.setNom(new SimpleStringProperty(tf_NomProd.getText()));
 			p.setDescription(new SimpleStringProperty(tf_Description.getText()));
 			float prix =Float.parseFloat(tf_Longueur.getText());
@@ -139,14 +139,14 @@ public class Vendeur_View_Controller implements Serializable {
 			p.setCategorie(new SimpleStringProperty(cb_Categorie.getValue().toString()));
 			p.setEtat(new SimpleStringProperty(cb_Etat.getValue().toString()));
 			
-			//a.setId(new SimpleIntegerProperty(annon_c.getLastIndex() + 1));	
+	
 			a.setProd_id(new SimpleIntegerProperty(p.getId()));
 			a.setVendeur_id(new SimpleIntegerProperty(Integer.parseInt((cb_nomVendeur.getValue().toString()).split("-")[0])));
 			a.setTitre(new SimpleStringProperty(tf_titreAnnoce.getText()));
 			a.setPrix(new SimpleFloatProperty(Float.parseFloat(tf_prixEstimatif.getText())));
 			a.setDescription(new SimpleStringProperty(ta_description.getText()));
 			a.setDate_p(new SimpleStringProperty(dp_dateAnnonce.getValue().toString()));
-			annon_c.insert(a, p);
+			req_c.insert(a, p);
 			 
 		} catch (Exception e) {
 			Alert a = new Alert(AlertType.ERROR, "CHAMP(S) INVALIDE(s)", ButtonType.OK);
@@ -168,7 +168,7 @@ public class Vendeur_View_Controller implements Serializable {
 		tf_Longueur.setText("0");
 		tf_Largeur.setText("0");
 		tf_Profondeur.setText("0");
-		tf_Taille.setText("0");
+		tf_taille.setText("0");
 		tf_Marque.clear();
 		cb_nomVendeur.setValue("");
 		tf_prixEstimatif.setText("0");
@@ -179,10 +179,10 @@ public class Vendeur_View_Controller implements Serializable {
 		btn_insert.setDisable(true);
 	}
 	private boolean checkFields() {
+		
 		if(tf_NomProd.getText().isEmpty() || tf_Description.getText().isEmpty() ||
 			tf_Prix.getText().isEmpty() || cb_Categorie.getValue().toString().isEmpty() || 
-			cb_Etat.getValue().toString().isEmpty() ||
-			cb_nomVendeur.getValue().toString().isEmpty())
+			cb_Etat.getValue().toString().isEmpty() || cb_nomVendeur.getValue().toString().isEmpty())
 			return false;
 		return true;
 	}

@@ -267,7 +267,7 @@
                                                 <Insets left="5.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextField fx:id="tf_Taille" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                          <TextField fx:id="tf_taille" GridPane.columnIndex="2" GridPane.rowIndex="7">
                                              <effect>
                                                 <InnerShadow blurType="ONE_PASS_BOX">
                                                    <input>

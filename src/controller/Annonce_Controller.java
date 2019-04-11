@@ -21,9 +21,9 @@ Connection conn;
 	
 	public void insert(Annonce a, Produit p) {
 		String query1 = "INSERT INTO PRODUIT (NOM, DESCRIPTION, PRIX, LONGUEUR, "
-				+ "LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT, ID) VALUES (?,?,?,?,?,?,?,?,?,?)";
-		String query2 = "INSERT INTO ANNONCE (ID, PROD_ID, ACHETEUR_ID, VENDEUR_ID, TITRE, "
-				+ "DESCRIPTION, PRIX_ESTIME, DATE_PUB, DATE_VENTE) VALUES (?,?,?,?,?,?,?,?,?)";
+				+ "LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT, TAILLE) VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String query2 = "INSERT INTO ANNONCE (PROD_ID, VENDEUR_ID, TITRE, "
+				+ "DESCRIPTION, PRIX_ESTIME, DATE_PUB) VALUES (?,?,?,?,?,?)";
 
 		try {
 
@@ -37,25 +37,24 @@ Connection conn;
 			ps.setString(7, p.getMarque());
 			ps.setString(8, p.getCategorie().toString());
 			ps.setString(9, p.getEtat().toString());
-			ps.setInt(10, p.getId());
+			ps.setFloat(10, p.getTaille());
+			
 			ps.executeUpdate();
 			ps.close();
 			
 			ps = conn.prepareStatement(query2);
-			ps.setInt(1, a.getId());
-			ps.setInt(2, getLastIndex());
-			ps.setInt(3, a.getId());
-			ps.setInt(4, a.getId());
-			ps.setString(5, a.getTitre());
-			ps.setString(6, a.getDescription());
-			ps.setFloat(7, a.getPrix());
-			ps.setString(8, a.getDate_p());
-			ps.setString(9, a.getDate_v());
+			System.out.println(getLastIndex());
+			ps.setInt(1, getLastIndex());
+			ps.setInt(2, a.getVendeur_id());
+			ps.setString(3, a.getTitre());
+			ps.setString(4, a.getDescription());
+			ps.setFloat(5, a.getPrix());
+			ps.setString(6, a.getDate_p());
 			
 			ps.executeUpdate();
 			ps.close();
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 	}
