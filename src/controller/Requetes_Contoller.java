@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleFloatProperty;
@@ -273,6 +274,130 @@ Connection conn;
 		ObservableList data = FXCollections.observableList(list);
 		return data;
 	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * Chercher annonce par categorie
+	 * @return
+	 */
+	public ObservableList getAllAnnoncesByCat(String cat) {
+		ArrayList<Annonce> resultList = new ArrayList<>();
+		List<Produit> allProducts = getAllProductsByCat(cat);
+		for(Produit p : allProducts){
+			resultList.addAll(getAllAnnoncesByProdId(p.getId()));
+		}
+		ObservableList data = FXCollections.observableList(resultList);
+		return data;
+	}
+	
+	
+	/**
+	 * Chercher annonce par nom
+	 * @return
+	 */
+	public ObservableList getAllAnnoncesByName(String nom) {
+		ArrayList<Annonce> list = new ArrayList<>();
+		 
+		String query = "SELECT * FROM ANNONCE WHERE NOM LIKE '%" + nom + "%'";
+		try {
+			PreparedStatement ps = conn.prepareStatement(query);			
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+				Annonce a = new Annonce();
+				a.setId(new SimpleIntegerProperty(rs.getInt("ID")));
+				a.setAcheteur_id(new SimpleIntegerProperty(rs.getInt("ACHETEUR_ID ")));
+				a.setProd_id(new SimpleIntegerProperty(rs.getInt("PROD_ID")));
+				a.setVendeur_id(new SimpleIntegerProperty(rs.getInt("VENDEUR_ID")));
+				a.setDescription(new SimpleStringProperty(rs.getString("DESCRIPTION")));
+				a.setTitre(new SimpleStringProperty(rs.getString("TITRE")));
+				a.setPrix(new SimpleFloatProperty(rs.getFloat("PRIX_ESTIME")));
+				a.setDate_p(new SimpleStringProperty(rs.getString("DATE_PUB")));
+				a.setDate_v(new SimpleStringProperty(rs.getString("DATE_VENTE")));					
+				list.add(a);	
+			}
+			ps.close();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		ObservableList data = FXCollections.observableList(list);
+		return data;
+	}
+	
+	/**
+	 * Chercher annonce par product_id
+	 * @return
+	 */
+	public ObservableList getAllAnnoncesByProdId(int p_id) {
+		ArrayList<Annonce> list = new ArrayList<>();
+		 
+		String query = "SELECT * FROM ANNONCE WHERE PROD_ID LIKE '%" + p_id + "%'";
+		try {
+			PreparedStatement ps = conn.prepareStatement(query);			
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+				Annonce a = new Annonce();
+				a.setId(new SimpleIntegerProperty(rs.getInt("ID")));
+				a.setAcheteur_id(new SimpleIntegerProperty(rs.getInt("ACHETEUR_ID ")));
+				a.setProd_id(new SimpleIntegerProperty(rs.getInt("PROD_ID")));
+				a.setVendeur_id(new SimpleIntegerProperty(rs.getInt("VENDEUR_ID")));
+				a.setDescription(new SimpleStringProperty(rs.getString("DESCRIPTION")));
+				a.setTitre(new SimpleStringProperty(rs.getString("TITRE")));
+				a.setPrix(new SimpleFloatProperty(rs.getFloat("PRIX_ESTIME")));
+				a.setDate_p(new SimpleStringProperty(rs.getString("DATE_PUB")));
+				a.setDate_v(new SimpleStringProperty(rs.getString("DATE_VENTE")));					
+				list.add(a);	
+			}
+			ps.close();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		ObservableList data = FXCollections.observableList(list);
+		return data;
+	}
+	
+	
+	/**
+	 * Chercher produit par id
+	 * @return
+	 */
+	public Produit getProductById(int id) {
+		 
+		String query = "SELECT * FROM PRODUIT WHERE ID LIKE '%" + id + "%'";
+		Produit p = new Produit();
+		try {
+			PreparedStatement ps = conn.prepareStatement(query);			
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			p.setNom(new SimpleStringProperty(rs.getString("NOM")));
+			p.setDescription(new SimpleStringProperty(rs.getString("description")));
+			p.setPrix(new SimpleFloatProperty(rs.getFloat("prix")));
+			p.setLongueur(new SimpleFloatProperty(rs.getFloat("longueur")));
+			p.setLargeur(new SimpleFloatProperty(rs.getFloat("largeur")));
+			p.setProfondeur(new SimpleFloatProperty(rs.getFloat("profondeur")));
+			p.setCategorie(new SimpleStringProperty(rs.getString("categorie")));
+			p.setEtat(new SimpleStringProperty(rs.getString("etat")));
+			
+			ps.close();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return p;
+	}
+	
+	
+	
+	
+	
+	
 	
 	public void mettreAJourAnnonce(float prix, int acheteur_id, int annonce_id){
 		
