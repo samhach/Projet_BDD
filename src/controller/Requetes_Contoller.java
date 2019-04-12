@@ -432,7 +432,7 @@ Connection conn;
 	}
 	
 	public void setSearchPath(Connection conn) {
-		String query = "SET SEARCH_PATH TO PROJECT";
+		String query = "SET SEARCH_PATH TO ESSAI";
 		try {
 			PreparedStatement ps = conn.prepareStatement(query);			
 			ps.execute();		
