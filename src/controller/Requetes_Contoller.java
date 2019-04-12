@@ -226,7 +226,46 @@ Connection conn;
 		return data;
 	}
 	
+/**
+ * Liste des annoces
+ */
+	public ObservableList listeDesAnnonces() {
+		ArrayList<Displayed_Annonce> list = new ArrayList<>();
+		String query = "SELECT ANNONCE.ID AS ANNONCE_ID, VENDEUR_ID, PRODUIT.ID, NOM, "
+				+ "PRODUIT.DESCRIPTION AS DESCRIP, PRIX, PRIX_ESTIME, TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT," 
+					+ "DATE_PUB, TITRE, FINALISEE FROM ANNONCE JOIN PRODUIT ON PROD_ID = PRODUIT.ID";
+		try {
+			PreparedStatement ps = conn.prepareStatement(query);			
+			ps.execute();
+			ResultSet rs = ps.getResultSet();
+			while(rs.next()) {
+				Displayed_Annonce da = new Displayed_Annonce();
+				da.setAnnonce_id(new SimpleIntegerProperty(rs.getInt("ANNONCE_ID")));
+				da.setProduit_nom(new SimpleStringProperty(rs.getString("NOM")));
+				da.setAnnonce_description(new SimpleStringProperty(rs.getString("DESCRIP")));
+				da.setPrix(new SimpleFloatProperty(rs.getFloat("PRIX")));
+				da.setTaille(new SimpleFloatProperty(rs.getFloat("TAILLE")));
+				da.setLongueur(new SimpleFloatProperty(rs.getFloat("LONGUEUR")));
+				da.setLargeur(new SimpleFloatProperty(rs.getFloat("LARGEUR")));
+				da.setProfondeur(new SimpleFloatProperty(rs.getFloat("PROFONDEUR")));
+				da.setMarque(new SimpleStringProperty(rs.getString("MARQUE")));
+				da.setProduit_categorie(new SimpleStringProperty(rs.getString("CATEGORIE")));
+				da.setEtat(new SimpleStringProperty(rs.getString("ETAT").trim()));	
+				da.setTitre(new SimpleStringProperty(rs.getString("TITRE")));
+				da.setDate_pub(new SimpleStringProperty(rs.getString("DATE_PUB")));
+				list.add(da);	
+			}
+			ps.close();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		ObservableList data = FXCollections.observableList(list);
+		return data;
+	}
 
+	
+	
 	/**
 	 * Chercher produit par categorie
 	 * @return
@@ -292,12 +331,7 @@ Connection conn;
 		ObservableList data = FXCollections.observableList(list);
 		return data;
 	}
-	
-	
-	
-	
-	
-	
+		
 	/**
 	 * Chercher annonce par categorie
 	 * @return

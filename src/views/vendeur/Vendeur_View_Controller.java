@@ -105,7 +105,7 @@ public class Vendeur_View_Controller implements Serializable {
 		cb_queries.setItems(FXCollections.observableArrayList(
 				"Liste de tous les produits",
 				"liste de toutes les annonces",
-				"liste des par ville"));
+				"liste des pulications"));
 		dp_dateAnnonce.setValue(LocalDate.now());
 		clearFields();
 		
@@ -202,6 +202,19 @@ public class Vendeur_View_Controller implements Serializable {
 		}
 		if(cb_queries.getSelectionModel().isSelected(1))
 		{
+			ObservableList<Produit> data = req_c.listeDesAnnonces();
+
+			tv_queries.getColumns().addAll(Utilitaires.buildTableCol("ANNONCE_ID"), Utilitaires.buildTableCol("PRODUIT_NOM"),
+					Utilitaires.buildTableCol("ANNONCE_DESCRIPTION"), Utilitaires.buildTableCol("PRIX"), 
+					Utilitaires.buildTableCol("TAILLE"),Utilitaires.buildTableCol("LONGUEUR"), 
+					Utilitaires.buildTableCol("LARGEUR"), Utilitaires.buildTableCol("PROFONDEUR"), 
+					Utilitaires.buildTableCol("MARQUE"),Utilitaires.buildTableCol("PRODUIT_CATEGORIE"),
+					Utilitaires.buildTableCol("ETAT"),  Utilitaires.buildTableCol("DATE_PUB"));
+					
+			tv_queries.setItems(data);
+		}
+		if(cb_queries.getSelectionModel().isSelected(2))
+		{
 			ObservableList<Produit> data = req_c.getAllAnnoncesFilter(0, null);
 
 			tv_queries.getColumns().addAll(Utilitaires.buildTableCol("ANNONCE_ID"), Utilitaires.buildTableCol("PRODUIT_NOM"),
@@ -213,50 +226,20 @@ public class Vendeur_View_Controller implements Serializable {
 					Utilitaires.buildTableCol("ADRESSE"), Utilitaires.buildTableCol("TEL"),
 					Utilitaires.buildTableCol("FINALISEE"));
 			tv_queries.setItems(data);
-		}
-		if(cb_queries.getSelectionModel().isSelected(2))
-		{
-			ObservableList<Produit> data = req_c.getAllProducts();
 
-			tv_queries.getColumns().addAll(Utilitaires.buildTableCol("NOM"),Utilitaires.buildTableCol("DESCRIPTION"),
-					Utilitaires.buildTableCol("PRIX"), Utilitaires.buildTableCol("MAEQUE"),
-					Utilitaires.buildTableCol("LONGUEUR"), Utilitaires.buildTableCol("LARGEUR"),
-					Utilitaires.buildTableCol("PROFONDEUR"), Utilitaires.buildTableCol("TAILLE"), 
-					Utilitaires.buildTableCol("CATEGORIE"), Utilitaires.buildTableCol("ETAT"));
-			tv_queries.setItems(data);
+			
 		}
 		if(cb_queries.getSelectionModel().isSelected(3))
 		{
-			ObservableList<Produit> data = req_c.getAllProducts();
-
-			tv_queries.getColumns().addAll(Utilitaires.buildTableCol("NOM"),Utilitaires.buildTableCol("DESCRIPTION"),
-					Utilitaires.buildTableCol("PRIX"), Utilitaires.buildTableCol("MAEQUE"),
-					Utilitaires.buildTableCol("LONGUEUR"), Utilitaires.buildTableCol("LARGEUR"),
-					Utilitaires.buildTableCol("PROFONDEUR"), Utilitaires.buildTableCol("TAILLE"), 
-					Utilitaires.buildTableCol("CATEGORIE"), Utilitaires.buildTableCol("ETAT"));
-			tv_queries.setItems(data);
+			
 		}
 		if(cb_queries.getSelectionModel().isSelected(4))
 		{
-			ObservableList<Produit> data = req_c.getAllProducts();
-
-			tv_queries.getColumns().addAll(Utilitaires.buildTableCol("NOM"),Utilitaires.buildTableCol("DESCRIPTION"),
-					Utilitaires.buildTableCol("PRIX"), Utilitaires.buildTableCol("MAEQUE"),
-					Utilitaires.buildTableCol("LONGUEUR"), Utilitaires.buildTableCol("LARGEUR"),
-					Utilitaires.buildTableCol("PROFONDEUR"), Utilitaires.buildTableCol("TAILLE"), 
-					Utilitaires.buildTableCol("CATEGORIE"), Utilitaires.buildTableCol("ETAT"));
-			tv_queries.setItems(data);
+			
 		}
 		if(cb_queries.getSelectionModel().isSelected(5))
 		{
-			ObservableList<Produit> data = req_c.getAllProducts();
-
-			tv_queries.getColumns().addAll(Utilitaires.buildTableCol("NOM"),Utilitaires.buildTableCol("DESCRIPTION"),
-					Utilitaires.buildTableCol("PRIX"), Utilitaires.buildTableCol("MAEQUE"),
-					Utilitaires.buildTableCol("LONGUEUR"), Utilitaires.buildTableCol("LARGEUR"),
-					Utilitaires.buildTableCol("PROFONDEUR"), Utilitaires.buildTableCol("TAILLE"), 
-					Utilitaires.buildTableCol("CATEGORIE"), Utilitaires.buildTableCol("ETAT"));
-			tv_queries.setItems(data);
+			
 		}
 	}
 	
