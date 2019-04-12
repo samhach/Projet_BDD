@@ -8,12 +8,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<!-- 				<Spinner fx:id="spinner" BorderPane.alignment="CENTER" editable="true" GridPane.columnIndex="2" GridPane.rowIndex="5"> -->
-<!-- 					<valueFactory> -->
-<!-- 						   <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10" initialValue="5" amountToStepBy="1"/> -->
-<!-- 					</valueFactory> -->
-<!-- 				</Spinner> -->
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.vendeur.Vendeur_View_Controller">
    <children>
       <TabPane prefHeight="400.0" prefWidth="854.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

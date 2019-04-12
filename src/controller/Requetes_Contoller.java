@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,7 @@ Connection conn;
 				p.setNom(new SimpleStringProperty(rs.getString("NOM")));
 				p.setDescription(new SimpleStringProperty(rs.getString("description")));
 				p.setPrix(new SimpleFloatProperty(rs.getFloat("prix")));
+				p.setMarque(new SimpleStringProperty(rs.getString("marque")));
 				p.setLongueur(new SimpleFloatProperty(rs.getFloat("longueur")));
 				p.setLargeur(new SimpleFloatProperty(rs.getFloat("largeur")));
 				p.setProfondeur(new SimpleFloatProperty(rs.getFloat("profondeur")));
@@ -67,35 +69,7 @@ Connection conn;
 	 * Selectionner toutes les annonces
 	 * @return
 	 */
-//	public ObservableList getAllAnnonces() {
-//		ArrayList<Produit> list = new ArrayList<>();
-//		 
-//		String query = "SELECT * FROM ANONCE";
-//		try {
-//			PreparedStatement ps = conn.prepareStatement(query);			
-//			ps.execute();
-//			ResultSet rs = ps.getResultSet();
-//			while(rs.next()) {
-//				Produit p = new Produit();
-//				p.setNom(new SimpleStringProperty(rs.getString("NOM")));
-//				p.setDescription(new SimpleStringProperty(rs.getString("description")));
-//				p.setPrix(new SimpleFloatProperty(rs.getFloat("prix")));
-//				p.setLongueur(new SimpleFloatProperty(rs.getFloat("longueur")));
-//				p.setLargeur(new SimpleFloatProperty(rs.getFloat("largeur")));
-//				p.setProfondeur(new SimpleFloatProperty(rs.getFloat("profondeur")));
-//				p.setCategorie(new SimpleStringProperty(rs.getString("categorie")));
-//				p.setEtat(new SimpleStringProperty(rs.getString("etat")));				
-//				list.add(p);	
-//			}
-//			ps.close();
-//						
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}	
-//		ObservableList data = FXCollections.observableList(list);
-//		return data;
-//	}
-//	
+
 	/**
 	 * Selectionner toutes les categories
 	 * @return
@@ -166,16 +140,59 @@ Connection conn;
 		return list;
 	}
 	
-	public ObservableList getAllAnnonces(){
+
+	/**
+	 * Annoce non pour produits non vendus
+	 * @return
+	 */
+	public ObservableList getAllAnnoncesFilter(int stm, String parm){
 		ArrayList<Displayed_Annonce> list = new ArrayList<>();
-		 
-		String query = "WITH RQ1 AS (SELECT INTERVENANT.ID AS INTERV_ID, VILLE, PROVINCE, PAYS, NUM_TEL FROM "
-				+ "INTERVENANT JOIN ADRESSE ON (ADRESSE.ID = INTERVENANT.ADRESSE_ID ))," 
-				+ "RQ2 AS(SELECT ANNONCE.ID AS ANNONCE_ID, VENDEUR_ID, PRODUIT.ID, NOM, "
-				+ "PRODUIT.DESCRIPTION AS DESCRIP, PRIX, PRIX_ESTIME, TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, CATEGORIE, ETAT," 
-				+ "DATE_PUB, TITRE, FINALISEE FROM ANNONCE JOIN PRODUIT ON (PROD_ID = PRODUIT.ID))" 
-				+ "SELECT ANNONCE_ID, NOM, DESCRIP, PRIX, PRIX_ESTIME,TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, CATEGORIE, ETAT,"  
-				+ "DATE_PUB, TITRE, VILLE, PROVINCE, PAYS, NUM_TEL, FINALISEE FROM RQ1 JOIN RQ2 ON (VENDEUR_ID = INTERV_ID)";
+		String query = null;
+
+		switch (stm) {
+		case 2://nom
+			query = "WITH RQ1 AS (SELECT INTERVENANT.ID AS INTERV_ID, VILLE, PROVINCE, PAYS, NUM_TEL FROM "
+					+ "INTERVENANT JOIN ADRESSE ON ADRESSE.ID = INTERVENANT.ADRESSE_ID )," 
+					+ "RQ2 AS(SELECT ANNONCE.ID AS ANNONCE_ID, VENDEUR_ID, PRODUIT.ID, NOM, "
+					+ "PRODUIT.DESCRIPTION AS DESCRIP, PRIX, PRIX_ESTIME, TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT," 
+					+ "DATE_PUB, TITRE, FINALISEE FROM ANNONCE JOIN PRODUIT ON PROD_ID = PRODUIT.ID WHERE NOM LIKE '%" + parm + "%')" 
+					+ "SELECT ANNONCE_ID, NOM, DESCRIP, PRIX, PRIX_ESTIME,TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT,"  
+					+ "DATE_PUB, TITRE, VILLE, PROVINCE, PAYS, NUM_TEL, FINALISEE FROM RQ1 JOIN RQ2 ON (VENDEUR_ID = INTERV_ID) ORDER BY ID DESC";
+			
+			break;
+		case 3://cat
+			
+			query = "WITH RQ1 AS (SELECT INTERVENANT.ID AS INTERV_ID, VILLE, PROVINCE, PAYS, NUM_TEL FROM "
+					+ "INTERVENANT JOIN ADRESSE ON (ADRESSE.ID = INTERVENANT.ADRESSE_ID ))," 
+					+ "RQ2 AS(SELECT ANNONCE.ID AS ANNONCE_ID, VENDEUR_ID, PRODUIT.ID, NOM, "
+					+ "PRODUIT.DESCRIPTION AS DESCRIP, PRIX, PRIX_ESTIME, TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT," 
+					+ "DATE_PUB, TITRE, FINALISEE FROM ANNONCE JOIN PRODUIT ON PROD_ID = PRODUIT.ID WHERE CATEGORIE = '"+ parm +"')" 
+					+ "SELECT ANNONCE_ID, NOM, DESCRIP, PRIX, PRIX_ESTIME,TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT,"  
+					+ "DATE_PUB, TITRE, VILLE, PROVINCE, PAYS, NUM_TEL, FINALISEE FROM RQ1 JOIN RQ2 ON (VENDEUR_ID = INTERV_ID) ORDER BY ID DESC";
+			
+			break;
+		case 1:// pas vendus
+			query = "WITH RQ1 AS (SELECT INTERVENANT.ID AS INTERV_ID, VILLE, PROVINCE, PAYS, NUM_TEL FROM "
+					+ "INTERVENANT JOIN ADRESSE ON (ADRESSE.ID = INTERVENANT.ADRESSE_ID ))," 
+					+ "RQ2 AS(SELECT ANNONCE.ID AS ANNONCE_ID, VENDEUR_ID, PRODUIT.ID, NOM, "
+					+ "PRODUIT.DESCRIPTION AS DESCRIP, PRIX, PRIX_ESTIME, TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT," 
+					+ "DATE_PUB, TITRE, FINALISEE FROM ANNONCE JOIN PRODUIT ON PROD_ID = PRODUIT.ID WHERE FINALISEE = 'FALSE')" 
+					+ "SELECT ANNONCE_ID, NOM, DESCRIP, PRIX, PRIX_ESTIME,TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT,"  
+					+ "DATE_PUB, TITRE, VILLE, PROVINCE, PAYS, NUM_TEL, FINALISEE FROM RQ1 JOIN RQ2 ON (VENDEUR_ID = INTERV_ID) ORDER BY ID DESC";
+			
+			break;
+
+		default: //TOUT
+			query = "WITH RQ1 AS (SELECT INTERVENANT.ID AS INTERV_ID, VILLE, PROVINCE, PAYS, NUM_TEL FROM "
+					+ "INTERVENANT JOIN ADRESSE ON (ADRESSE.ID = INTERVENANT.ADRESSE_ID ))," 
+					+ "RQ2 AS(SELECT ANNONCE.ID AS ANNONCE_ID, VENDEUR_ID, PRODUIT.ID, NOM, "
+					+ "PRODUIT.DESCRIPTION AS DESCRIP, PRIX, PRIX_ESTIME, TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT," 
+					+ "DATE_PUB, TITRE, FINALISEE FROM ANNONCE JOIN PRODUIT ON (PROD_ID = PRODUIT.ID))" 
+					+ "SELECT ANNONCE_ID, NOM, DESCRIP, PRIX, PRIX_ESTIME,TAILLE, LONGUEUR, LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT,"  
+					+ "DATE_PUB, TITRE, VILLE, PROVINCE, PAYS, NUM_TEL, FINALISEE FROM RQ1 JOIN RQ2 ON (VENDEUR_ID = INTERV_ID) ORDER BY ID DESC";
+			
+			break;
+		} 
 		try {
 			PreparedStatement ps = conn.prepareStatement(query);			
 			ps.execute();
@@ -190,12 +207,13 @@ Connection conn;
 				da.setLongueur(new SimpleFloatProperty(rs.getFloat("LONGUEUR")));
 				da.setLargeur(new SimpleFloatProperty(rs.getFloat("LARGEUR")));
 				da.setProfondeur(new SimpleFloatProperty(rs.getFloat("PROFONDEUR")));
+				da.setMarque(new SimpleStringProperty(rs.getString("MARQUE")));
 				da.setProduit_categorie(new SimpleStringProperty(rs.getString("CATEGORIE")));
 				da.setEtat(new SimpleStringProperty(rs.getString("ETAT").trim()));	
 				da.setAdresse(new SimpleStringProperty(rs.getString("VILLE").trim() +", "  + rs.getString("PROVINCE").trim() +", " + rs.getString("PAYS").trim()));
 				da.setTitre(new SimpleStringProperty(rs.getString("TITRE")));
 				da.setDate_pub(new SimpleStringProperty(rs.getString("DATE_PUB")));
-				da.setDate_pub(new SimpleStringProperty(rs.getString("NUM_TEL")));
+				da.setTel(new SimpleStringProperty(rs.getString("NUM_TEL").trim()));
 				da.setFinalisee(new SimpleBooleanProperty(rs.getBoolean("FINALISEE")));
 				list.add(da);	
 			}
@@ -208,7 +226,7 @@ Connection conn;
 		return data;
 	}
 	
-	
+
 	/**
 	 * Chercher produit par categorie
 	 * @return
@@ -426,10 +444,9 @@ Connection conn;
 	
 	public void insert(Annonce a, Produit p) {
 		String query1 = "INSERT INTO PRODUIT (NOM, DESCRIPTION, PRIX,LONGUEUR, "
-				+ "LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT, TAILLE) VALUES (?,?,?,?,?,?,?,?,?,?)";
+				+ "LARGEUR, PROFONDEUR, MARQUE, CATEGORIE, ETAT, TAILLE, ID) VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
 		String query2 = "INSERT INTO ANNONCE (PROD_ID, VENDEUR_ID, TITRE, "
-				+ "DESCRIPTION, PRIX_ESTIME, DATE_PUB) VALUES (?,?,?,?,?,?)";
-
+				+ "DESCRIPTION, PRIX_ESTIME, DATE_PUB, ID) VALUES (?,?,?,?,?,?,?)";
 		try {
 
 			PreparedStatement ps = conn.prepareStatement(query1);
@@ -443,17 +460,21 @@ Connection conn;
 			ps.setString(8, p.getCategorie().toString());
 			ps.setString(9, p.getEtat().toString());
 			ps.setFloat(10, p.getTaille());
+			ps.setInt(11, getLastIndex("PRODUIT")+1);
 			
 			ps.executeUpdate();
+
+
 			ps.close();
+			
 			ps = conn.prepareStatement(query2);
-			ps.setInt(1, getLastIndex());
+			ps.setInt(1, getLastIndex("PRODUIT"));
 			ps.setInt(2, a.getVendeur_id());
 			ps.setString(3, a.getTitre());
 			ps.setString(4, a.getDescription());
 			ps.setFloat(5, a.getPrix());
 			ps.setString(6, a.getDate_p());
-			
+			ps.setInt(7, getLastIndex("ANNONCE") +1);
 			ps.executeUpdate();
 			ps.close();
 			
@@ -462,15 +483,15 @@ Connection conn;
 		}		
 	}
 	
-	public int getLastIndex() {
+	public int getLastIndex(String table) {
 		int index = 0;
-		String query = "SELECT ID FROM PRODUIT ORDER BY ID DESC";
+		String query = "SELECT count(*) FROM " + table;
 		try {
 			PreparedStatement ps = conn.prepareStatement(query);			
 			ps.execute();
 			ResultSet rs = ps.getResultSet();
 			if(rs.next())
-				index = rs.getInt("ID");
+				index = rs.getInt("count");
 			ps.close();
 			
 			
@@ -478,5 +499,18 @@ Connection conn;
 			e.printStackTrace();
 		}	
 		return index;
+	}
+	public void mettre_a_jour(int annance_id, int acheteur_id, float prix_achet, String date_vente){
+		String query = "UPDATE ANNONCE SET PRIX_ESTIME = "+ prix_achet + ", ACHETEUR_ID = "+ acheteur_id + ",DATE_VENTE = '" + date_vente 
+				+"', FINALISEE = 'TRUE' WHERE  ID =" + annance_id;
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(query);			
+			ps.executeUpdate();
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 	}
 }

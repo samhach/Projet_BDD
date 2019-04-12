@@ -9,7 +9,7 @@ import java.util.Optional;
 import javafx.event.ActionEvent; 
 import application.ConnectSingleton;
 import application.Utilitaires;
-import controller.Annonce_Controller;
+
 
 import controller.Requetes_Contoller;
 import javafx.beans.property.SimpleFloatProperty;
@@ -89,7 +89,6 @@ public class Vendeur_View_Controller implements Serializable {
 	
 	private Connection conn;
 	
-	Annonce_Controller annon_c;
 	Requetes_Contoller req_c;
 
 	public Vendeur_View_Controller() {
@@ -133,7 +132,8 @@ public class Vendeur_View_Controller implements Serializable {
 			float prix =Float.parseFloat(tf_Longueur.getText());
 			if(prix <0) return;
 			p.setPrix(new SimpleFloatProperty(Float.parseFloat(tf_Prix.getText())));
-			p.setLongueur(new SimpleFloatProperty(prix));
+			p.setMarque(new SimpleStringProperty(tf_Marque.getText()));
+			p.setLongueur(new SimpleFloatProperty(Float.parseFloat(tf_Longueur.getText())));
 			p.setLargeur(new SimpleFloatProperty(Float.parseFloat(tf_Largeur.getText())));			
 			p.setProfondeur(new SimpleFloatProperty(Float.parseFloat(tf_Profondeur.getText())));
 			p.setCategorie(new SimpleStringProperty(cb_Categorie.getValue().toString()));
@@ -193,8 +193,10 @@ public class Vendeur_View_Controller implements Serializable {
 		{
 			ObservableList<Produit> data = req_c.getAllProducts();
 
-			tv_queries.getColumns().addAll(Utilitaires.buildTableCol("NOM"),Utilitaires.buildTableCol("DESCRIPTION"),Utilitaires.buildTableCol("PRIX"), 
-					Utilitaires.buildTableCol("LONGUEUR"), Utilitaires.buildTableCol("LARGEUR"), Utilitaires.buildTableCol("PROFONDEUR"), Utilitaires.buildTableCol("TAILLE"), 
+			tv_queries.getColumns().addAll(Utilitaires.buildTableCol("NOM"),Utilitaires.buildTableCol("DESCRIPTION"),
+					Utilitaires.buildTableCol("PRIX"), Utilitaires.buildTableCol("MAEQUE"),
+					Utilitaires.buildTableCol("LONGUEUR"), Utilitaires.buildTableCol("LARGEUR"),
+					Utilitaires.buildTableCol("PROFONDEUR"), Utilitaires.buildTableCol("TAILLE"), 
 					Utilitaires.buildTableCol("CATEGORIE"), Utilitaires.buildTableCol("ETAT"));
 			tv_queries.setItems(data);
 		}

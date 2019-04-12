@@ -1,6 +1,11 @@
 package application;
 	
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.xml.stream.StreamFilter;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +39,20 @@ public class Main extends Application {
 			window.show();
 			
 			ConnectSingleton.getConnexion();
+			
+			File f = new File("query.txt");
+			try {
+				FileWriter fw = new FileWriter(f);
+				for (int i = 0; i < 50; i++) {
+					fw.write("("+ i + "," + "'Produit" + i +"', 'Description du produit"+i+"',"+i+", 0, 0, 0, 0, 'Marque"+i+"', 'Sport', 'Bon')," );
+				}
+				fw.write(";");
+				fw.flush();
+				fw.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
