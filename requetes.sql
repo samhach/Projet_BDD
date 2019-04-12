@@ -80,7 +80,7 @@ CREATE TABLE ADRESSE
 	 CODE_POSTAL CHAR(7)	 
 	 );
 	 
-INSERT INTO ADRESSE  VALUES (0,0101, 'Robin des bois', 'Montreal', 'Quebec', 'Canada', 'H1H R2R'),
+INSERT INTO ADRESSE  VALUES (0,0101, 'Robin des bois ', 'Montreal', 'Quebec', 'Canada', 'H1H R2R'),
 								(1,2011, 'Belle villes', 'Longueil', 'Quebec', 'Canada', 'H1H R2R'),
 								(2,0333, 'Des ruelles', 'Laval', 'Quebec', 'Canada', 'H1H R2R'),
 								(3,0030, 'Auclair', 'Brossard', 'Quebec', 'Canada', 'H2H R4Z'),
