@@ -1,15 +1,10 @@
-package views.vendeur;
+package application;
 
 
 import java.io.Serializable;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.Optional;
-
-import javafx.event.ActionEvent; 
-import application.ConnectSingleton;
-import application.Utilitaires;
-
 
 import controller.Requetes_Contoller;
 import javafx.beans.property.SimpleFloatProperty;
@@ -21,17 +16,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.Annonce;
 import models.Categorie;
@@ -41,7 +32,6 @@ import models.Produit;
 @SuppressWarnings("serial")
 public class Vendeur_View_Controller implements Serializable {
 
-	private TextInputDialog td;
 	@FXML 
 	private TextField tf_NomProd;
 	@FXML 
@@ -186,7 +176,7 @@ public class Vendeur_View_Controller implements Serializable {
 			return false;
 		return true;
 	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	public void getListProduits() {
 		tv_queries.getColumns().clear();
 		if(cb_queries.getSelectionModel().isSelected(0))

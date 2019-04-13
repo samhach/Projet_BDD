@@ -1,10 +1,8 @@
 package application;
-	
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
-import javax.xml.stream.StreamFilter;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Paths;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -56,7 +54,8 @@ public class Main extends Application {
 	}
 	
 	public void acheter() throws IOException {
-		root =  FXMLLoader.load(getClass().getResource("../Views/acheteur/Acheteur_View.fxml"));
+
+		root =   FXMLLoader.load(getClass().getResource("Acheteur_View.fxml"));
 		scene = new Scene(root);
 		window.setTitle("Acheteur");
 		window.setScene(scene);
@@ -64,8 +63,8 @@ public class Main extends Application {
 	}
 	
 	public void vendre() throws IOException {
-		
-		root =  FXMLLoader.load(getClass().getResource("../Views/vendeur/Vendeur_View.fxml"));	
+
+		root =  FXMLLoader.load(getClass().getResource("Vendeur_View.fxml"));
 		window.setTitle("Vendeur");
 		scene = new Scene(root);
 		window.setScene(scene);

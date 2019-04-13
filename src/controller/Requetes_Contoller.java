@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +35,7 @@ Connection conn;
 	 * Selectionner tous les produis
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public ObservableList getAllProducts() {
 		ArrayList<Produit> list = new ArrayList<>();
 		 
@@ -145,6 +145,7 @@ Connection conn;
 	 * Annoce non pour produits non vendus
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public ObservableList getAllAnnoncesFilter(int stm, String parm){
 		ArrayList<Displayed_Annonce> list = new ArrayList<>();
 		String query = null;
@@ -229,6 +230,7 @@ Connection conn;
 /**
  * Liste des annoces
  */
+	@SuppressWarnings("rawtypes")
 	public ObservableList listeDesAnnonces() {
 		ArrayList<Displayed_Annonce> list = new ArrayList<>();
 		String query = "SELECT ANNONCE.ID AS ANNONCE_ID, VENDEUR_ID, PRODUIT.ID, NOM, "
@@ -270,6 +272,7 @@ Connection conn;
 	 * Chercher produit par categorie
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public ObservableList getAllProductsByCat(String cat) {
 		ArrayList<Produit> list = new ArrayList<>();
 		 
@@ -303,6 +306,7 @@ Connection conn;
 	 * Chercher produit par nom
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public ObservableList getAllProductsByName(String nom) {
 		ArrayList<Produit> list = new ArrayList<>();
 		 
@@ -336,6 +340,7 @@ Connection conn;
 	 * Chercher annonce par categorie
 	 * @return
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ObservableList getAllAnnoncesByCat(String cat) {
 		ArrayList<Annonce> resultList = new ArrayList<>();
 		List<Produit> allProducts = getAllProductsByCat(cat);
@@ -351,6 +356,7 @@ Connection conn;
 	 * Chercher annonce par nom
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public ObservableList getAllAnnoncesByName(String nom) {
 		ArrayList<Annonce> list = new ArrayList<>();
 		 
@@ -385,6 +391,7 @@ Connection conn;
 	 * Chercher annonce par product_id
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public ObservableList getAllAnnoncesByProdId(int p_id) {
 		ArrayList<Annonce> list = new ArrayList<>();
 		 

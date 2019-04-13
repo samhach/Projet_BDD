@@ -11,7 +11,6 @@ public class Annonce {
 	private IntegerProperty id =         new SimpleIntegerProperty();
 	private IntegerProperty prod_id =    new SimpleIntegerProperty();
 	private IntegerProperty vendeur_id =    new SimpleIntegerProperty();
-	private IntegerProperty acheteur_id =    new SimpleIntegerProperty();
 	private StringProperty     titre = new SimpleStringProperty();
 	private StringProperty description = new SimpleStringProperty();
 	private FloatProperty prix = new SimpleFloatProperty();
@@ -22,7 +21,6 @@ public class Annonce {
 			StringProperty date_v) {
 		this.prod_id = prod_id;
 		this.vendeur_id = vendeur_id;
-		this.acheteur_id = acheteur_id;
 		this.titre = titre;
 		this.description = description;
 		this.prix = prix;
@@ -49,10 +47,8 @@ public class Annonce {
 		this.id = id;
 	}
 	public void setAcheteur_nom(IntegerProperty acheteur_id) {
-		this.acheteur_id = acheteur_id;
 	}
 		public void setAcheteur_id(IntegerProperty acheteur_id) {
-		this.acheteur_id = acheteur_id;
 	}
 	public String getTitre() {
 		return titre.get();

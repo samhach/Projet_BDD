@@ -1,4 +1,4 @@
-package views.acheteur;
+package application;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -6,11 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import application.ConnectSingleton;
-import application.Utilitaires;
-
 import javafx.event.EventHandler;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.MouseEvent;
 import controller.Requetes_Contoller;
 import javafx.collections.FXCollections;
@@ -25,10 +21,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import models.Annonce;
 import models.Categorie;
 import models.Displayed_Annonce;
 import models.Produit;
@@ -42,6 +36,11 @@ class TabViewHandler implements EventHandler<MouseEvent> {
  }
 
 public class Acheteur_View_Controller implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@FXML
 	private TextField search_bar;
 	
@@ -108,6 +107,7 @@ public class Acheteur_View_Controller implements Serializable {
 		this.req_c = new Requetes_Contoller(conn);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@FXML
 	private void initialize() {
 		cb_ChercherCategorie.setItems(FXCollections.observableArrayList(req_c.getCategories()));
@@ -121,7 +121,7 @@ public class Acheteur_View_Controller implements Serializable {
 	}
 	
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	public void getListAnnonces(ObservableList<Displayed_Annonce> data) {
 		tv_annonces.getColumns().clear();		
 		this.data = data;
